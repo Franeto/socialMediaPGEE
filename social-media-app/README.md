@@ -1,1 +1,1 @@
-1:32:25/2:18:33 на клипа https://www.youtube.com/watch?v=zM93yZ_8SvE&ab_channel=LamaDev
+33:26 / 3:07:27 на клипа https://www.youtube.com/watch?v=pFHyZvVxce0

@@ -3,9 +3,25 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Rightbar from "../../components/rightbar/Rightbar";
 import Feed from "../../components/feed/Feed";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import {useParams} from "react-router"
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
+  const [user, setUser] = useState({});
+  const username = useParams().username;
+  const axiosLink = `http://localhost:8800/api/users?username=${username}`
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(axiosLink);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [axiosLink]);
+
   return (
     <>
       <Topbar />
@@ -16,23 +32,23 @@ export default function Profile() {
             <div className="profileCover">
               <img
                 className="profileCoverImg"
-                src={`${PF}post/3.jpeg`}
+                src={user.coverPicture || PF+"person/noCover.png"}
                 alt=""
               />
               <img
                 className="profileUserImg"
-                src={`${PF}person/7.jpeg`}
+                src={user.profilePicture || PF+"person/noAvatar.png"}
                 alt=""
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">Safak Kocaoglu</h4>
-              <span className="profileInfoDesc">Hello my friends</span>
+              <h4 className="profileInfoName">{user.username}</h4>
+              <span className="profileInfoDesc">{user.description}</span>
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed />
-            <Rightbar profile/>
+            <Feed username={username}/>
+            <Rightbar user={user}/>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { MoreVert } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -43,7 +43,7 @@ export default function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`profile/${user.username}`}>
+            <Link to={`/profile/${user.username}`}>
               <img
                 className="postProfileImg"
                 src={

@@ -28,6 +28,9 @@ app.use(function (req, res, next) {
         "Access-Control-Allow-Methods",
         "GET, HEAD, POST, PUT, DELETE, OPTIONS"
     );
+    res.header(
+        "Cross-Origin-Resource-Policy","cross-origin"
+    )
     next();
 });
 

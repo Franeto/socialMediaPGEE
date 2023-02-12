@@ -3,3 +3,5 @@
 amazon s3 \
 firebase  - > image uploading
 CDN tool  /
+
+follow/unfollow doesn't work properly.

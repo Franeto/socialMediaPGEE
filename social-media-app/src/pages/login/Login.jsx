@@ -4,12 +4,14 @@ import { loginCall } from "../../apiCalls";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate } from "react-router";
 
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -18,9 +20,11 @@ export default function Login() {
       dispatch
     );
   };
+  const handleNavigate = (e)=>{
+    e.preventDefault();
+    navigate("/register");
+ }
   
-
-  console.log(user);
   return (
     
     <div className="login">
@@ -52,7 +56,7 @@ export default function Login() {
               {isFetching ? <CircularProgress color="inherit" size="25px"/> : "Log In" }
             </button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
+            <button formNoValidate className="loginRegisterButton" onClick={handleNavigate}>
             {isFetching ? <CircularProgress color="inherit" size="25px"/> : "Create a New Account" }
             </button>
           </form>

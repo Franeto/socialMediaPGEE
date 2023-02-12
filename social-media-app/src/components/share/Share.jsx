@@ -1,5 +1,11 @@
 import "./share.css";
-import { PermMedia, Label, Room, EmojiEmotions, Cancel } from "@mui/icons-material";
+import {
+   PermMedia,
+   Label,
+   Room,
+   EmojiEmotions,
+   Cancel,
+} from "@mui/icons-material";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useRef } from "react";
@@ -20,11 +26,11 @@ export default function Share() {
       };
       if (file) {
          const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      console.log(newPost);
+         const fileName = Date.now() + file.name;
+         data.append("name", fileName);
+         data.append("file", file);
+         newPost.img = fileName;
+         console.log(newPost);
          try {
             await axios.post("http://localhost:8800/api/upload", data);
          } catch (err) {
@@ -34,7 +40,7 @@ export default function Share() {
 
       try {
          await axios.post("http://localhost:8800/api/posts", newPost);
-         window.location.reload()
+         window.location.reload();
       } catch (err) {
          console.log(err);
       }
@@ -49,7 +55,7 @@ export default function Share() {
                   src={
                      user.profilePicture
                         ? PF + user.profilePicture
-                        : PF + "person/noAvatar.jpeg"
+                        : PF + "person/noAvatar.png"
                   }
                   alt=""
                />
@@ -62,11 +68,18 @@ export default function Share() {
             <hr className="shareHr" />
             {file && (
                <div className="shareImgContainer">
-                  <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
-                  <Cancel  className="shareCancelImg" onClick={()=>{
-                     document.querySelector('form').reset();
-                     setFile(null)
-                  }}/>
+                  <img
+                     className="shareImg"
+                     src={URL.createObjectURL(file)}
+                     alt=""
+                  />
+                  <Cancel
+                     className="shareCancelImg"
+                     onClick={() => {
+                        document.querySelector("form").reset();
+                        setFile(null);
+                     }}
+                  />
                </div>
             )}
             <div className="shareBottom">

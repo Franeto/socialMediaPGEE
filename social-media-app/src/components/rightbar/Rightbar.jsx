@@ -1,24 +1,18 @@
 import "./rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { Add, Remove } from "@mui/icons-material";
-import { Follow, UnFollow } from "../../context/AuthActions";
+import { Follow, Unfollow } from "../../context/AuthActions";
 
 export default function Rightbar({ user }) {
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
    const [friends, setFriends] = useState([]);
    const { user: currentUser, dispatch } = useContext(AuthContext);
-   const [followed, setFollowed] = useState(
-      currentUser.following.includes(user?.id)
-   );
-
-   // useEffect(() => {
-   //    setFollowed(currentUser.following.includes(user?.id));
-   // }, [currentUser, user.id]);
+   const [followed, setFollowed] = useState(false);
 
    useEffect(() => {
       const getFriends = async () => {
@@ -32,41 +26,49 @@ export default function Rightbar({ user }) {
          }
       };
       getFriends();
+
    }, [user]);
+
+   useEffect(() => {
+      const storedFollowed = JSON.parse(
+         localStorage.getItem(`followed-${user._id}`)
+      );
+      setFollowed(storedFollowed || currentUser.following.includes(user._id));
+
+   }, [user, currentUser]);
 
    const handleClick = async () => {
       try {
-         if (followed) {
-            await axios.put(
-               "http://localhost:8800/api/users/" + user._id + "/unfollow",
-               { userId: currentUser._id }
-            );
-            dispatch(Follow(user._id));
-         } else {
-            await axios.put(
-               "http://localhost:8800/api/users/" + user._id + "/follow",
-               { userId: currentUser._id }
-            );
-            dispatch(UnFollow(user._id));
-         }
+        if (followed) {
+          await axios.put(
+            "http://localhost:8800/api/users/" + user._id + "/unfollow",
+            { userId: currentUser._id }
+          );
+          dispatch(Unfollow(user._id));
+        } else {
+          await axios.put(
+            "http://localhost:8800/api/users/" + user._id + "/follow",
+            { userId: currentUser._id }
+          );
+          dispatch(Follow(user._id));
+        }
       } catch (err) {
-         console.log(err);
+        console.log(err);
       }
+    
       setFollowed(!followed);
-   };
+      localStorage.setItem(`followed-${user._id}`, JSON.stringify(!followed));
+    };
 
    const ProfileRightbar = () => {
       return (
          <>
             {user.username !== currentUser.username && (
-               <button
-                  className="rightbarFollowingButton"
-                  onClick={handleClick}
-               >
-                  {followed ? "Unfollow" : "Follow"}
-                  {followed ? <Remove /> : <Add />}
-               </button>
-            )}
+          <button className="rightbarFollowingButton" onClick={handleClick}>
+            {followed ? "Unfollow" : "Follow"}
+            {followed ? <Remove /> : <Add />}
+          </button>
+        )}
             <h4 className="rightbarTitle">User information</h4>
             <div className="rightbarInfo">
                <div className="rightbarInfoItem">

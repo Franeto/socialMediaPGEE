@@ -5,3 +5,4 @@ firebase  - > image uploading
 CDN tool  /
 
 follow/unfollow doesn't work properly.
+error handling for login/register 

@@ -1,4 +1,5 @@
-2:38:00 / 3:07:27 на клипа https://www.youtube.com/watch?v=pFHyZvVxce0
+2:38:00 / 3:07:27 на клипа https://www.youtube.com/watch?v=pFHyZvVxce0 - DONE
+37:47 / 2:06:07 на клипа https://www.youtube.com/watch?v=HggSXt1Hzfk&t=1809s 
 
 amazon s3 \
 firebase  - > image uploading

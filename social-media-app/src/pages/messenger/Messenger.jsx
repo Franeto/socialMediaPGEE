@@ -2,6 +2,7 @@ import "./messenger.css";
 import Topbar from "../../components/topbar/Topbar";
 import Conversation from "../../components/conversation/Conversation";
 import Message from "../../components/message/Message";
+import ChatOnline from "../../components/chatOnline/ChatOnline";
 
 export default function Messenger() {
    return (
@@ -21,11 +22,16 @@ export default function Messenger() {
                      <Message own={true}/>
                      <Message/>
                   </div>
-                  <div className="chatBoxBottom"></div>
+                  <div className="chatBoxBottom">
+                     <textarea className="chatMessageInput" placeholder="Съобщи"></textarea>
+                     <button className="chatSubmitButton">Изпрати</button>
+                  </div>
                </div>
             </div>
             <div className="chatOnline">
-               <div className="chatOnlineWrapper">online</div>
+               <div className="chatOnlineWrapper">
+                  <ChatOnline/>
+               </div>
             </div>
          </div>
       </>

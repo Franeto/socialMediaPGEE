@@ -26,49 +26,52 @@ export default function Rightbar({ user }) {
          }
       };
       getFriends();
-
    }, [user]);
-
-   useEffect(() => {
-      const storedFollowed = JSON.parse(
-         localStorage.getItem(`followed-${user._id}`)
-      );
-      setFollowed(storedFollowed || currentUser.following.includes(user._id));
-
-   }, [user, currentUser]);
 
    const handleClick = async () => {
       try {
-        if (followed) {
-          await axios.put(
-            "http://localhost:8800/api/users/" + user._id + "/unfollow",
-            { userId: currentUser._id }
-          );
-          dispatch(Unfollow(user._id));
-        } else {
-          await axios.put(
-            "http://localhost:8800/api/users/" + user._id + "/follow",
-            { userId: currentUser._id }
-          );
-          dispatch(Follow(user._id));
-        }
+         if (followed) {
+            await axios.put(
+               "http://localhost:8800/api/users/" + user._id + "/unfollow",
+               { userId: currentUser._id }
+            );
+            dispatch(Unfollow(user._id));
+         } else {
+            await axios.put(
+               "http://localhost:8800/api/users/" + user._id + "/follow",
+               { userId: currentUser._id }
+            );
+            dispatch(Follow(user._id));
+         }
       } catch (err) {
-        console.log(err);
+         console.log(err);
       }
-    
+
       setFollowed(!followed);
       localStorage.setItem(`followed-${user._id}`, JSON.stringify(!followed));
-    };
+   };
 
    const ProfileRightbar = () => {
+      useEffect(() => {
+         const storedFollowed = JSON.parse(
+            localStorage.getItem(`followed-${user._id}`)
+         );
+         setFollowed(
+            storedFollowed || currentUser.following.includes(user._id)
+         );
+      }, [user, currentUser]);
+
       return (
          <>
             {user.username !== currentUser.username && (
-          <button className="rightbarFollowingButton" onClick={handleClick}>
-            {followed ? "Unfollow" : "Follow"}
-            {followed ? <Remove /> : <Add />}
-          </button>
-        )}
+               <button
+                  className="rightbarFollowingButton"
+                  onClick={handleClick}
+               >
+                  {followed ? "Unfollow" : "Follow"}
+                  {followed ? <Remove /> : <Add />}
+               </button>
+            )}
             <h4 className="rightbarTitle">User information</h4>
             <div className="rightbarInfo">
                <div className="rightbarInfoItem">

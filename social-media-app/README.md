@@ -6,3 +6,4 @@ firebase  - > image uploading
 CDN tool  /
 
 error handling for login/register 
+да направя online users да излизат в home page-a

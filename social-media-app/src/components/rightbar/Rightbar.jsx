@@ -1,32 +1,45 @@
 import "./rightbar.css";
-import { Users } from "../../dummyData";
 import Online from "../online/Online";
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { Add, Remove } from "@mui/icons-material";
 import { Follow, Unfollow } from "../../context/AuthActions";
 
-export default function Rightbar({ user }) {
+export default function Rightbar({ user, onlineUsers, currentId }) {
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
    const [friends, setFriends] = useState([]);
    const { user: currentUser, dispatch } = useContext(AuthContext);
    const [followed, setFollowed] = useState(false);
+   const [onlineFriends, setOnlineFriends] = useState([]);
+
 
    useEffect(() => {
       const getFriends = async () => {
          try {
-            const friendList = await axios.get(
-               "http://localhost:8800/api/users/friends/" + user._id
-            );
-            setFriends(friendList.data);
+            if (user) {
+               const friendList = await axios.get(
+                  "http://localhost:8800/api/users/friends/" + user?._id
+               );
+               setFriends(friendList.data);
+            }
+            else{
+               const friendList = await axios.get(
+                  "http://localhost:8800/api/users/friends/" + currentId
+               );
+               setFriends(friendList.data);
+            }
          } catch (err) {
             console.log(err);
          }
       };
       getFriends();
    }, [user]);
+   //Getting currently online friends
+   useEffect(() => {
+      setOnlineFriends(friends?.filter((f) => onlineUsers?.includes(f._id)));
+   }, [friends, onlineUsers]);
 
    const handleClick = async () => {
       try {
@@ -50,7 +63,43 @@ export default function Rightbar({ user }) {
       setFollowed(!followed);
       localStorage.setItem(`followed-${user._id}`, JSON.stringify(!followed));
    };
-
+   
+   const HomeRightbar = () => {
+      return (
+         <div>
+            <div className="birthdayContainer">
+               <img src="assets/gift.png" alt="" className="birthdayImg" />
+               <span className="birthdayText">
+                  {" "}
+                  <b>Pola Foster</b> and <b>3 other friends</b> have a birthday
+                  today
+               </span>
+            </div>
+            <img src="assets/ad.png" alt="" className="rightbarAd" />
+            <h4 className="rightbarTitle">Online Friends</h4>
+            <ul className="rightbarFriendList">
+               {onlineFriends.map((u, key) => (
+                  // <Online key={key} user={u} />
+                  <li className="rightbarFriend">
+                     <div className="rightbarProfileImgContainer">
+                        <img
+                           src={
+                              u?.profilePicture
+                                 ? PF + u.profilePicture
+                                 : PF + "person/noAvatar.png"
+                           }
+                           alt=""
+                           className="rightbarProfileImg"
+                        />
+                        <span className="rightbarOnline"></span>
+                     </div>
+                     <span className="rightbarUsername">{u.username}</span>
+                  </li>
+               ))}
+            </ul>
+         </div>
+      );
+   };
    const ProfileRightbar = () => {
       useEffect(() => {
          const storedFollowed = JSON.parse(
@@ -98,7 +147,8 @@ export default function Rightbar({ user }) {
             <h4 className="rightbarTitle">User friend</h4>
             <div className="rightbarFollowings">
                {friends.map((friend, key) => (
-                  <Link key={key}
+                  <Link
+                     key={key}
                      to={"/profile/" + friend.username}
                      style={{ textDecoration: "none" }}
                   >
@@ -122,27 +172,7 @@ export default function Rightbar({ user }) {
          </>
       );
    };
-   const HomeRightbar = () => {
-      return (
-         <>
-            <div className="birthdayContainer">
-               <img src="assets/gift.png" alt="" className="birthdayImg" />
-               <span className="birthdayText">
-                  {" "}
-                  <b>Pola Foster</b> and <b>3 other friends</b> have a birthday
-                  today
-               </span>
-            </div>
-            <img src="assets/ad.png" alt="" className="rightbarAd" />
-            <h4 className="rightbarTitle">Online Friends</h4>
-            <ul className="rightbarFriendList">
-               {Users.map((u) => (
-                  <Online key={u.id} user={u} />
-               ))}
-            </ul>
-         </>
-      );
-   };
+
    return (
       <div className="rightbar">
          <div className="rightbatWrapper">

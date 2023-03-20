@@ -58,9 +58,24 @@ router.get("/friends/:userId", async (req, res) => {
          const { _id, username, profilePicture } = friend;
          friendList.push({ _id, username, profilePicture });
       });
-      res.status(200).json(friendList)
+      res.status(200).json(friendList);
    } catch (err) {
       res.status(500).json(err);
+   }
+});
+
+//get all users
+router.get("/users", async (req, res) => {
+   try {
+      const users = await User.find(); // query all users from the database
+      const newUsers = users.map((user) => {
+         const { password, updatedAt,profilePicture,coverPicture,followers,createdAt,isAdmin,following, ...other } = user._doc;
+         return other;
+      });
+      res.json(newUsers); // return the list of users as JSON
+   } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Server error" });
    }
 });
 

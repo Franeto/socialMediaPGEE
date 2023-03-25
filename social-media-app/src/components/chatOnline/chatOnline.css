@@ -6,6 +6,10 @@
   margin-top: 5px;
 }
 
+.chatOnlineFriend:hover{
+  background-color: rgb(243, 243, 243);
+}
+
 .chatOnlineImgContainer{
   position: relative;
   margin-right: 10px;

@@ -15,7 +15,7 @@ export default function Topbar() {
    useEffect(() => {
       const getAllUsers = async () => {
          const res = await axios.get("http://localhost:8800/api/users/users");
-         setAllUsers(res.data); // You should use res.data to set the allUsers state
+         setAllUsers(res.data);
       };
       getAllUsers();
    }, []);
@@ -48,7 +48,7 @@ export default function Topbar() {
             <div className="searchbar">
                <Search className="searchIcon" />
                <input
-                  placeholder="Търси приятели, постове или видеа"
+                  placeholder="Намери своите приятели"
                   className="searchInput"
                   onChange={handleFilter}
                />

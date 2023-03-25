@@ -2,9 +2,9 @@ import "./rightbar.css";
 import Online from "../online/Online";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Message, Remove } from "@mui/icons-material";
 import { Follow, Unfollow } from "../../context/AuthActions";
 
 export default function Rightbar({ user, onlineUsers, currentId }) {
@@ -13,7 +13,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
    const { user: currentUser, dispatch } = useContext(AuthContext);
    const [followed, setFollowed] = useState(false);
    const [onlineFriends, setOnlineFriends] = useState([]);
-
+   const navigate = useNavigate();
 
    useEffect(() => {
       const getFriends = async () => {
@@ -23,8 +23,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                   "http://localhost:8800/api/users/friends/" + user?._id
                );
                setFriends(friendList.data);
-            }
-            else{
+            } else {
                const friendList = await axios.get(
                   "http://localhost:8800/api/users/friends/" + currentId
                );
@@ -40,6 +39,11 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
    useEffect(() => {
       setOnlineFriends(friends?.filter((f) => onlineUsers?.includes(f._id)));
    }, [friends, onlineUsers]);
+
+   const handleNavigate = (e)=>{
+      e.preventDefault();
+      navigate("/messenger")
+   }
 
    const handleClick = async () => {
       try {
@@ -63,7 +67,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
       setFollowed(!followed);
       localStorage.setItem(`followed-${user._id}`, JSON.stringify(!followed));
    };
-   
+
    const HomeRightbar = () => {
       return (
          <div>
@@ -80,27 +84,33 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
             <ul className="rightbarFriendList">
                {onlineFriends.map((u, key) => (
                   // <Online key={key} user={u} />
-                  <li className="rightbarFriend">
-                     <div className="rightbarProfileImgContainer">
-                        <img
-                           src={
-                              u?.profilePicture
-                                 ? PF + u.profilePicture
-                                 : PF + "person/noAvatar.png"
-                           }
-                           alt=""
-                           className="rightbarProfileImg"
-                        />
-                        <span className="rightbarOnline"></span>
-                     </div>
-                     <span className="rightbarUsername">{u.username}</span>
-                  </li>
+                  <Link
+                     to={`/profile/${u.username}`}
+                     style={{ textDecoration: "none" }}
+                  >
+                     <li className="rightbarFriend">
+                        <div className="rightbarProfileImgContainer">
+                           <img
+                              src={
+                                 u?.profilePicture
+                                    ? PF + u.profilePicture
+                                    : PF + "person/noAvatar.png"
+                              }
+                              alt=""
+                              className="rightbarProfileImg"
+                           />
+                           <span className="rightbarOnline"></span>
+                        </div>
+                        <span className="rightbarUsername">{u.username}</span>
+                     </li>
+                  </Link>
                ))}
             </ul>
          </div>
       );
    };
    const ProfileRightbar = () => {
+      // Checks whether the user is followed or not
       useEffect(() => {
          const storedFollowed = JSON.parse(
             localStorage.getItem(`followed-${user._id}`)
@@ -113,13 +123,21 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
       return (
          <>
             {user.username !== currentUser.username && (
-               <button
-                  className="rightbarFollowingButton"
-                  onClick={handleClick}
-               >
-                  {followed ? "Unfollow" : "Follow"}
-                  {followed ? <Remove /> : <Add />}
-               </button>
+               <div className="rightbarButtonContainer">
+                  <button
+                     className="rightbarButton"
+                     onClick={handleClick}
+                  >
+                     {followed ? "Unfollow" : "Follow"}
+                     {followed ? <Remove /> : <Add />}
+                  </button>
+                  <button
+                     className="rightbarButton"
+                     onClick={handleNavigate}
+                  >
+                     Message
+                  </button>
+               </div>
             )}
             <h4 className="rightbarTitle">User information</h4>
             <div className="rightbarInfo">

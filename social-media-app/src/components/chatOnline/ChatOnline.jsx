@@ -22,14 +22,16 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
       setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
    }, [friends, onlineUsers]);
 
-   const handleClick = async (user) => {
+   const handleClick = async (user, e) => {
+      
       try {
          const res = await axios.get(
             `http://localhost:8800/api/conversations/find/${currentId}/${user._id}`
          );
          setCurrentChat(res.data);
+         e.preventDefault()
       } catch (error) {
-         console.log(error);
+         console.log(error); 
       }
    };
 

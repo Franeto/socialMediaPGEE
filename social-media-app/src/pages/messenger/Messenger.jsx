@@ -14,6 +14,7 @@ export default function Messenger() {
    const [messages, setMessages] = useState("");
    const [newMessage, setNewMessage] = useState("");
    const [arrivalMessage, setArrivalMessage] = useState(null);
+   const [showWarning,setShowWarning] = useState(false)
    const [onlineUsers, setOnlineUsers] = useState([]);
    const socket = useRef(io("ws://localhost:8900"));
    const { user } = useContext(AuthContext);
@@ -77,11 +78,17 @@ export default function Messenger() {
 
    const handleSubmit = async (e) => {
       e.preventDefault();
+
       const message = {
          sender: user._id,
          text: newMessage,
          conversationId: currentChat._id,
       };
+
+      if(message.text.trim()===""){
+         setShowWarning(true)
+         return;
+      }
 
       const receiverId = currentChat.members.find(
          (member) => member !== user._id
@@ -139,10 +146,11 @@ export default function Messenger() {
                         <div className="chatBoxBottom">
                            <textarea
                               className="chatMessageInput"
-                              placeholder="Съобщи"
+                              placeholder={showWarning ? "Не можеш да изпращаш празни съобщения" : "Съобщи"}
                               onChange={(e) => setNewMessage(e.target.value)}
                               value={newMessage}
                            ></textarea>
+
                            <button
                               className="chatSubmitButton"
                               onClick={handleSubmit}

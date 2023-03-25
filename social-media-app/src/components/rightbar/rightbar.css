@@ -79,9 +79,14 @@
    border-radius: 5%;
 }
 
-.rightbarFollowingButton {
+.rightbarButtonContainer{
+   display: flex;
+}
+
+.rightbarButton {
    margin-top: 30px;
    margin-bottom: 10px;
+   margin-right: 10px;
    border: none;
    background-color: #1872f2;
    color: white;
@@ -94,7 +99,7 @@
    cursor: pointer;
 }
 
-.rightbarFollowingButton:focus {
+.rightbarButton:focus {
    outline: none;
 }
 
@@ -129,4 +134,5 @@
 
 .rightbarUsername {
    font-weight: 500;
+   color: black;
 }

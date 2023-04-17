@@ -99,6 +99,8 @@
 .topbarLink {
    margin-right: 10px;
    font-style: 14px;
+   text-decoration: none;
+   color: white;
    cursor: pointer;
 }
 

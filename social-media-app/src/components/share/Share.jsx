@@ -95,21 +95,6 @@ export default function Share() {
                         onChange={(e) => setFile(e.target.files[0])}
                      />
                   </label>
-                  <div className="shareOption">
-                     <Label htmlColor="blue" className="shareIcon" />
-                     <span className="shareOptionText">Таг</span>
-                  </div>
-                  <div className="shareOption">
-                     <Room htmlColor="green" className="shareIcon" />
-                     <span className="shareOptionText">Локация</span>
-                  </div>
-                  <div className="shareOption">
-                     <EmojiEmotions
-                        htmlColor="goldenrod"
-                        className="shareIcon"
-                     />
-                     <span className="shareOptionText">Чувства</span>
-                  </div>
                </div>
                <button className="shareButton" type="submit">
                   Сподели

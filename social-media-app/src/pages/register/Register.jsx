@@ -39,27 +39,27 @@ export default function Register() {
             <div className="loginLeft">
                <h3 className="loginLogo">ПГЕЕ</h3>
                <span className="loginDesc">
-                  Connect with friends and the world around you on PGEE
+                  Свържи се с приятели и съученици в ПГЕЕ
                </span>
             </div>
             <div className="loginRight">
                <form className="loginBox" onSubmit={handleClick}>
                   <input
-                     placeholder="Username"
+                     placeholder="Име"
                      required
                      ref={username}
                      className="loginInput"
                   />
                   <input
                      type="email"
-                     placeholder="Email"
+                     placeholder="E-mail"
                      required
                      ref={email}
                      className="loginInput"
                   />
                   <input
                      type="password"
-                     placeholder="Password"
+                     placeholder="Парола"
                      required
                      ref={password}
                      className="loginInput"
@@ -67,16 +67,16 @@ export default function Register() {
                   />
                   <input
                      type="password"
-                     placeholder="Confirm Password"
+                     placeholder="Потвърди паролата"
                      required
                      ref={confirmPassword}
                      className="loginInput"
                   />
                   <button className="loginButton" type="submit">
-                     SignUp
+                     Запиши се
                   </button>
                   <button className="loginRegisterButton" onClick={handleNavigate}>
-                     Log into Account
+                     Влез в акаунт
                   </button>
                </form>
             </div>

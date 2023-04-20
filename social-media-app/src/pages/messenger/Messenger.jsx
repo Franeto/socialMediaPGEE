@@ -118,10 +118,10 @@ export default function Messenger() {
          <div className="messenger">
             <div className="chatMenu">
                <div className="chatMenuWrapper">
-                  <input
+                  {/* <input
                      placeholder="Search for friends"
                      className="chatMenuInput"
-                  />
+                  /> */}
                   {conversations.map((c) => (
                      <div key={c._id} onClick={() => setCurrentChat(c)}>
                         <Conversation conversation={c} currentUser={user} />
@@ -162,7 +162,7 @@ export default function Messenger() {
                   ) : (
                      <span className="noConversationText">
                         {" "}
-                        Open a conversation to start a chat.
+                        Отвори чат.
                      </span>
                   )}
                </div>

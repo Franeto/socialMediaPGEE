@@ -129,14 +129,14 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                      className="rightbarButton"
                      onClick={handleClick}
                   >
-                     {followed ? "Unfollow" : "Follow"}
+                     {followed ? "Отпоследвай" : "Последвай"}
                      {followed ? <Remove /> : <Add />}
                   </button>
                   <button
                      className="rightbarButton"
                      onClick={handleNavigate}
                   >
-                     Message
+                     Изпрати съобщение
                   </button>
                </div>
             )}

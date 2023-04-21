@@ -40,8 +40,10 @@ export default function Post({ post }) {
       } catch (err) {
          console.log(err);
       }
-      setLike(isLiked ? like - 1 : like + 1);
-      setIsLiked(!isLiked);
+      if(currentUser._id!==user._id){
+         setLike(isLiked ? like - 1 : like + 1);
+         setIsLiked(!isLiked);
+      }
    };
    return (
       <div className="post">
@@ -74,22 +76,28 @@ export default function Post({ post }) {
             </div>
             <div className="postBottom">
                <div className="postBottomLeft">
-                  <img
-                     className="postLikeIcon"
-                     src={`${PF}like.png`}
-                     onClick={likeHandler}
-                     alt=""
-                  />
-                  <img
-                     className="postLikeIcon"
-                     src={`${PF}heart.png`}
-                     onClick={likeHandler}
-                     alt=""
-                  />
+                  {isLiked ? (
+                     <>
+                        <img
+                           className="postLikeIconLiked"
+                           src={`${PF}like.png`}
+                           onClick={likeHandler}
+                           alt=""
+                        />
+                     </>
+                  ) : (
+                     <>
+                        <img
+                           className="postLikeIcon"
+                           src={`${PF}like.png`}
+                           onClick={likeHandler}
+                           alt=""
+                        />
+                     </>
+                  )}
                   <span className="postLikeCounter">{like} харесвания</span>
                </div>
-               <div className="postBottomRight">
-               </div>
+               <div className="postBottomRight"></div>
             </div>
          </div>
       </div>

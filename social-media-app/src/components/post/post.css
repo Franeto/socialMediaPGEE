@@ -66,6 +66,13 @@
     cursor:pointer;
 }
 
+.postLikeIconLiked{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    cursor:pointer;
+}
+
 .postLikeCounter{
     font-size: 15px;
 }

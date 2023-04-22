@@ -15,9 +15,7 @@ const path = require("path");
 dotenv.config();
 
 //Connecting to database
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () => {
-   console.log("Connected to MongoDB");
-});
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 mongoose.set("strictQuery", false);
 //middleware
 app.use(function (req, res, next) {
@@ -66,8 +64,28 @@ app.use("/api/posts", postRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 
+// --------------------------deployment------------------------------
+
+const __dirname1 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+   app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+   app.get("*", (req, res) =>
+      res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+   );
+} else {
+   app.get("/", (req, res) => {
+      res.send("API is running..");
+   });
+}
+
+// --------------------------deployment------------------------------
+
+const PORT = process.env.PORT || 8800
+
 const server = app.listen(8800, () => {
-   console.log("Backend server is running on port 8800.");
+   console.log(`Backend server is running on port ${PORT}.`);
 });
 
 const io = require("socket.io")(server, {

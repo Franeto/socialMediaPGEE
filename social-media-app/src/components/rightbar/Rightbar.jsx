@@ -72,19 +72,10 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
       
       return (
          <div>
-            {/* <div className="birthdayContainer">
-               <img src="assets/gift.png" alt="" className="birthdayImg" />
-               <span className="birthdayText">
-                  {" "}
-                  <b>Pola Foster</b> and <b>3 other friends</b> have a birthday
-                  today
-               </span>
-            </div> */}
             <img src={PF+"assets/pgeeLogo.png"} alt="" className="rightbarAd" />
             <h4 className="rightbarTitle">На линия</h4>
             <ul className="rightbarFriendList">
                {onlineFriends.map((u, key) => (
-                  // <Online key={key} user={u} />
                   <Link
                      to={`/profile/${u.username}`}
                      style={{ textDecoration: "none" }}

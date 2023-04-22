@@ -35,13 +35,32 @@ export default function Feed({ username }) {
                   {posts.map((p) => (
                      <Post key={p._id} post={p} />
                   ))}
-                  {console.log(posts)}
                </>
             ) : (
                <>
-                  <h1 style={{ color: "rgb(201, 201, 201)" }}>
-                     Потребителят няма публикации.
-                  </h1>
+                  {username ? (
+                     <>
+                        {username === user.username ? (
+                           <>
+                              <h1 className="feedNoPosts">
+                                 Нямаш публикации.
+                              </h1>
+                           </>
+                        ) : (
+                           <>
+                              <h1 className="feedNoPosts">
+                                 Потребителят няма публикации.
+                              </h1>
+                           </>
+                        )}
+                     </>
+                  ) : (
+                     <>
+                        <h1 className="feedNoPosts">
+                           Нямаш публикации. Последвай своите приятели.
+                        </h1>
+                     </>
+                  )}
                </>
             )}
          </div>

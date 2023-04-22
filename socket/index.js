@@ -32,10 +32,17 @@ io.on("connection", (socket) => {
    //send and get message
    socket.on("sendMessage", ({ senderId, receiverId, text }) => {
       const user = getUser(receiverId);
+
+   // Check if the receiver is online
+   if (user && user.socketId) {
       io.to(user.socketId).emit("getMessage", {
          senderId,
          text,
       });
+   } else {
+      // The receiver is not online
+      console.log(`User with ID ${receiverId} is not online.`);
+   }
    });
 
    //when disconnect

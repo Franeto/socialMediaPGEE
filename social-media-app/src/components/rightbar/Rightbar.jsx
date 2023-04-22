@@ -40,10 +40,10 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
       setOnlineFriends(friends?.filter((f) => onlineUsers?.includes(f._id)));
    }, [friends, onlineUsers]);
 
-   const handleNavigate = (e)=>{
+   const handleNavigate = (e) => {
       e.preventDefault();
-      navigate("/messenger")
-   }
+      navigate(`/messenger?userId=${user._id}`);
+   };
 
    const handleClick = async () => {
       try {
@@ -69,10 +69,13 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
    };
 
    const HomeRightbar = () => {
-      
       return (
          <div>
-            <img src={PF+"assets/pgeeLogo.png"} alt="" className="rightbarAd" />
+            <img
+               src={PF + "assets/pgeeLogo.png"}
+               alt=""
+               className="rightbarAd"
+            />
             <h4 className="rightbarTitle">На линия</h4>
             <ul className="rightbarFriendList">
                {onlineFriends.map((u, key) => (
@@ -116,17 +119,11 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
          <>
             {user.username !== currentUser.username && (
                <div className="rightbarButtonContainer">
-                  <button
-                     className="rightbarButton"
-                     onClick={handleClick}
-                  >
+                  <button className="rightbarButton" onClick={handleClick}>
                      {followed ? "Отпоследвай" : "Последвай"}
                      {followed ? <Remove /> : <Add />}
                   </button>
-                  <button
-                     className="rightbarButton"
-                     onClick={handleNavigate}
-                  >
+                  <button className="rightbarButton" onClick={handleNavigate}>
                      Изпрати съобщение
                   </button>
                </div>
@@ -156,28 +153,46 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
             </div> */}
             <h4 className="rightbarTitle">Приятели</h4>
             <div className="rightbarFollowings">
-               {friends.map((friend, key) => (
-                  <Link
-                     key={key}
-                     to={"/profile/" + friend.username}
-                     style={{ textDecoration: "none" }}
-                  >
-                     <div className="rightbarFollowing">
-                        <img
-                           src={
-                              friend.profilePicture
-                                 ? PF + friend.profilePicture
-                                 : PF + "person/noAvatar.png"
-                           }
-                           alt=""
-                           className="rightbarFollowingImg"
-                        />
-                        <span className="rightbarFollowingName">
-                           {friend.username}
-                        </span>
-                     </div>
-                  </Link>
-               ))}
+               {friends.length > 0 ? (
+                  <>
+                     {friends.map((friend, key) => (
+                        <Link
+                           key={key}
+                           to={"/profile/" + friend.username}
+                           style={{ textDecoration: "none" }}
+                        >
+                           <div className="rightbarFollowing">
+                              <img
+                                 src={
+                                    friend.profilePicture
+                                       ? PF + friend.profilePicture
+                                       : PF + "person/noAvatar.png"
+                                 }
+                                 alt=""
+                                 className="rightbarFollowingImg"
+                              />
+                              <span className="rightbarFollowingName">
+                                 {friend.username}
+                              </span>
+                           </div>
+                        </Link>
+                     ))}
+                  </>
+               ) : (
+                  <>
+                     {user._id === currentUser._id ? (
+                        <>
+                           <h1 className="feedNoPosts">Нямаш приятели</h1>
+                        </>
+                     ) : (
+                        <>
+                           <h1 className="feedNoPosts">
+                              Потребителят няма приятели
+                           </h1>
+                        </>
+                     )}
+                  </>
+               )}
             </div>
          </>
       );

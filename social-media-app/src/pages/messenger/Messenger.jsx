@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
+import { useLocation } from "react-router-dom";
 
 export default function Messenger() {
    const [conversations, setConversations] = useState([]);
@@ -14,9 +15,11 @@ export default function Messenger() {
    const [messages, setMessages] = useState("");
    const [newMessage, setNewMessage] = useState("");
    const [arrivalMessage, setArrivalMessage] = useState(null);
-   const [showWarning,setShowWarning] = useState(false)
+   const [showWarning, setShowWarning] = useState(false);
    const [onlineUsers, setOnlineUsers] = useState([]);
    const socket = useRef(io("ws://localhost:8900"));
+   const location = useLocation();
+   const userID = new URLSearchParams(location.search).get("userId");
    const { user } = useContext(AuthContext);
    const scrollRef = useRef();
 
@@ -32,6 +35,22 @@ export default function Messenger() {
    }, []);
 
    useEffect(() => {
+      const getCurrentConversation = async () => {
+         if (userID) {
+            try {
+               const res = await axios.get(
+                  `http://localhost:8800/api/conversations/find/${userID}/${user._id}`
+               );
+               setCurrentChat(res.data);
+            } catch (error) {
+               console.log(error);
+            }
+         }
+      };
+      getCurrentConversation();
+   }, [userID,user._id]);
+
+   useEffect(() => {
       arrivalMessage &&
          currentChat?.members.includes(arrivalMessage.sender) &&
          setMessages((prev) => [...prev, arrivalMessage]);
@@ -40,7 +59,9 @@ export default function Messenger() {
    useEffect(() => {
       socket.current.emit("addUser", user._id);
       socket.current.on("getUsers", (users) => {
-         setOnlineUsers(user.following.filter(f=>users.some(u=>u.userId===f)))
+         setOnlineUsers(
+            user.following.filter((f) => users.some((u) => u.userId === f))
+         );
       });
    }, [user]);
 
@@ -85,8 +106,8 @@ export default function Messenger() {
          conversationId: currentChat._id,
       };
 
-      if(message.text.trim()===""){
-         setShowWarning(true)
+      if (message.text.trim() === "") {
+         setShowWarning(true);
          return;
       }
 
@@ -146,7 +167,11 @@ export default function Messenger() {
                         <div className="chatBoxBottom">
                            <textarea
                               className="chatMessageInput"
-                              placeholder={showWarning ? "Не можеш да изпращаш празни съобщения" : "Съобщи"}
+                              placeholder={
+                                 showWarning
+                                    ? "Не можеш да изпращаш празни съобщения"
+                                    : "Съобщи"
+                              }
                               onChange={(e) => setNewMessage(e.target.value)}
                               value={newMessage}
                            ></textarea>
@@ -160,16 +185,17 @@ export default function Messenger() {
                         </div>
                      </>
                   ) : (
-                     <span className="noConversationText">
-                        {" "}
-                        Отвори чат.
-                     </span>
+                     <span className="noConversationText"> Отвори чат.</span>
                   )}
                </div>
             </div>
             <div className="chatOnline">
                <div className="chatOnlineWrapper">
-                  <ChatOnline onlineUsers={onlineUsers} currentId={user._id} setCurrentChat={setCurrentChat}/>
+                  <ChatOnline
+                     onlineUsers={onlineUsers}
+                     currentId={user._id}
+                     setCurrentChat={setCurrentChat}
+                  />
                </div>
             </div>
          </div>

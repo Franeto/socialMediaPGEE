@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { io } from "socket.io-client";
 
 export default function Home() {
-	const socket = useRef(io("ws://localhost:8900"));
+	const socket = useRef(io("http://localhost:8800"));
    const { user } = useContext(AuthContext);
    const [onlineUsers, setOnlineUsers] = useState([]);
 

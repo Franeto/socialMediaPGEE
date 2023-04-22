@@ -40,7 +40,7 @@ export default function Post({ post }) {
       } catch (err) {
          console.log(err);
       }
-      if(currentUser._id!==user._id){
+      if (currentUser._id !== user._id) {
          setLike(isLiked ? like - 1 : like + 1);
          setIsLiked(!isLiked);
       }
@@ -95,7 +95,21 @@ export default function Post({ post }) {
                         />
                      </>
                   )}
-                  <span className="postLikeCounter">{like} харесвания</span>
+                  {like === 1 ? (
+                     <>
+                        {" "}
+                        <span className="postLikeCounter">
+                           {like} харесване
+                        </span>
+                     </>
+                  ) : (
+                     <>
+                        {" "}
+                        <span className="postLikeCounter">
+                           {like} харесвания
+                        </span>
+                     </>
+                  )}
                </div>
                <div className="postBottomRight"></div>
             </div>

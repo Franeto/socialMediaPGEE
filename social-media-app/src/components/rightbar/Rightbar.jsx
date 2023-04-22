@@ -1,10 +1,10 @@
 import "./rightbar.css";
-import Online from "../online/Online";
+// import Online from "../online/Online";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Add, Message, Remove } from "@mui/icons-material";
+import { Add, Remove } from "@mui/icons-material";
 import { Follow, Unfollow } from "../../context/AuthActions";
 
 export default function Rightbar({ user, onlineUsers, currentId }) {

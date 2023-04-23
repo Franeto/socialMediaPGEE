@@ -18,6 +18,20 @@ dotenv.config();
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 mongoose.set("strictQuery", false);
 
+app.use(function (req, res, next) {
+   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+   res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+   );
+   res.header(
+      "Access-Control-Allow-Methods",
+      "GET, HEAD, POST, PUT, DELETE, OPTIONS"
+   );
+   res.header("Cross-Origin-Resource-Policy", "cross-origin");
+   res.header("Content-Security-Policy", "default-src 'self'; img-src 'self' https://res.cloudinary.com;")
+   next();
+});
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());

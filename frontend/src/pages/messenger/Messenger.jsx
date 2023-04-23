@@ -17,14 +17,14 @@ export default function Messenger() {
    const [arrivalMessage, setArrivalMessage] = useState(null);
    const [showWarning, setShowWarning] = useState(false);
    const [onlineUsers, setOnlineUsers] = useState([]);
-   const socket = useRef(io("ws://localhost:8900"));
+   const socket = useRef(io("https://pgee-social-media.herokuapp.com/"));
    const location = useLocation();
    const userID = new URLSearchParams(location.search).get("userId");
    const { user } = useContext(AuthContext);
    const scrollRef = useRef();
 
    useEffect(() => {
-      socket.current = io("http://localhost:8800");
+      socket.current = io("https://pgee-social-media.herokuapp.com/");
       socket.current.on("getMessage", (data) => {
          setArrivalMessage({
             sender: data.senderId,

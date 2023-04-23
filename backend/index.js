@@ -84,7 +84,7 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = process.env.PORT || 8800
 
-const server = app.listen(8800, () => {
+const server = app.listen(PORT, () => {
    console.log(`Backend server is running on port ${PORT}.`);
 });
 

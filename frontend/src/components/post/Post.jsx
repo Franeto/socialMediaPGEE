@@ -17,7 +17,7 @@ export default function Post({ post }) {
    const [isLiked, setIsLiked] = useState(false);
    const [user, setUser] = useState({});
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-   const axiosLink = `http://localhost:8800/api/users?userId=${post.userId}`;
+   const axiosLink = `https://pgee-social-media.herokuapp.com/api/users?userId=${post.userId}`;
    const { user: currentUser } = useContext(AuthContext);
 
    useEffect(() => {
@@ -34,7 +34,7 @@ export default function Post({ post }) {
 
    const likeHandler = () => {
       try {
-         axios.put(`http://localhost:8800/api/posts/` + post._id + "/like", {
+         axios.put(`https://pgee-social-media.herokuapp.com/api/posts/` + post._id + "/like", {
             userId: currentUser._id,
          });
       } catch (err) {
@@ -56,7 +56,7 @@ export default function Post({ post }) {
                         src={
                            user.profilePicture
                               ? PF + user.profilePicture
-                              : PF + "person/noAvatar.png"
+                              : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                         }
                         alt=""
                      />
@@ -80,7 +80,7 @@ export default function Post({ post }) {
                      <>
                         <img
                            className="postLikeIconLiked"
-                           src={`${PF}like.png`}
+                           src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}
                            onClick={likeHandler}
                            alt=""
                         />
@@ -89,7 +89,7 @@ export default function Post({ post }) {
                      <>
                         <img
                            className="postLikeIcon"
-                           src={`${PF}like.png`}
+                           src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}
                            onClick={likeHandler}
                            alt=""
                         />

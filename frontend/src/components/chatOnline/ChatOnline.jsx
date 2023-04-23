@@ -10,7 +10,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
    useEffect(() => {
       const getFriends = async () => {
          const res = await axios.get(
-            "http://localhost:8800/api/users/friends/" + currentId
+            "https://pgee-social-media.herokuapp.com/api/users/friends/" + currentId
          );
          setFriends(res.data);
       };
@@ -25,7 +25,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
    const handleClick = async (user) => {
       try {
          const res = await axios.get(
-            `http://localhost:8800/api/conversations/find/${currentId}/${user._id}`
+            `https://pgee-social-media.herokuapp.com/api/conversations/find/${currentId}/${user._id}`
          );
          setCurrentChat(res.data);
       } catch (error) {
@@ -43,7 +43,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
                      src={
                         o?.profilePicture
                            ? PF + o.profilePicture
-                           : PF + "person/noAvatar.png"
+                           : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                      }
                      alt=""
                   />

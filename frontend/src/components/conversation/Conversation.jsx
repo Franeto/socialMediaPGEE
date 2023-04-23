@@ -12,7 +12,7 @@ export default function Conversation({ conversation, currentUser }) {
       const getUser = async () => {
          try {
             const res = await axios(
-               "http://localhost:8800/api/users?userId=" + friendId
+               "https://pgee-social-media.herokuapp.com/api/users?userId=" + friendId
             );
             setUser(res.data)
          } catch (err) {
@@ -24,7 +24,7 @@ export default function Conversation({ conversation, currentUser }) {
    return (
       <div className="conversation">
          <img
-            src={user?.profilePicture ? user.profilePicture : PF+"person/noAvatar.png"}
+            src={user?.profilePicture ? user.profilePicture : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"}
             alt=""
             className="conversationImg"
          />

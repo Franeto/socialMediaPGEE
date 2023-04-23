@@ -11,7 +11,7 @@ export default function Profile() {
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
    const [user, setUser] = useState({});
    const username = useParams().username;
-   const axiosLink = `http://localhost:8800/api/users?username=${username}`;
+   const axiosLink = `https://pgee-social-media.herokuapp.com/api/users?username=${username}`;
 
    useEffect(() => {
       const fetchUser = async () => {
@@ -34,7 +34,7 @@ export default function Profile() {
                         src={
                            user.coverPicture
                               ? PF + user.coverPicture
-                              : PF + "person/noCover.png"
+                              : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256577/noCover_pm9xwc.png"
                         }
                         alt=""
                      />
@@ -43,7 +43,7 @@ export default function Profile() {
                         src={
                            user.profilePicture
                               ? PF + user.profilePicture
-                              : PF + "person/noAvatar.png"
+                              : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                         }
                         alt=""
                      />

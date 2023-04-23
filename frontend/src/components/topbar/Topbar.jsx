@@ -14,7 +14,7 @@ export default function Topbar() {
 
    useEffect(() => {
       const getAllUsers = async () => {
-         const res = await axios.get("http://localhost:8800/api/users/users");
+         const res = await axios.get("https://pgee-social-media.herokuapp.com/api/users/users");
          setAllUsers(res.data);
       };
       getAllUsers();
@@ -103,7 +103,7 @@ export default function Topbar() {
                   src={
                      user.profilePicture
                         ? PF + user.profilePicture
-                        : PF + "person/noAvatar.png"
+                        : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                   }
                   alt=""
                   className="topbarImg"

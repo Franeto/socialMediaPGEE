@@ -13,7 +13,7 @@ export default function Message({message,own}) {
   return (
     <div className={own ? "message own" : "message"}>
       <div className="messageTop">
-        <img src={PF + "person/noAvatar.png"} alt="" className="messageImg"/>
+        <img src={"https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"} alt="" className="messageImg"/>
         <p className="messageText">{message.text}</p>
       </div>
       <div className="messageBottom">

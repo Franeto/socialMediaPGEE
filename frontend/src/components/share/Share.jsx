@@ -32,14 +32,14 @@ export default function Share() {
          newPost.img = fileName;
          console.log(newPost);
          try {
-            await axios.post("http://localhost:8800/api/upload", data);
+            await axios.post("https://pgee-social-media.herokuapp.com/api/upload", data);
          } catch (err) {
             console.log(err);
          }
       }
 
       try {
-         await axios.post("http://localhost:8800/api/posts", newPost);
+         await axios.post("https://pgee-social-media.herokuapp.com/api/posts", newPost);
          window.location.reload();
       } catch (err) {
          console.log(err);
@@ -55,7 +55,7 @@ export default function Share() {
                   src={
                      user.profilePicture
                         ? PF + user.profilePicture
-                        : PF + "person/noAvatar.png"
+                        : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                   }
                   alt=""
                />

@@ -65,7 +65,7 @@ export default function Share() {
                />
             </div>
             <hr className="shareHr" />
-            {file && (
+            {/* {file && (
                <div className="shareImgContainer">
                   <img
                      className="shareImg"
@@ -80,9 +80,9 @@ export default function Share() {
                      }}
                   />
                </div>
-            )}
+            )} */}
             <div className="shareBottom">
-               <div className="shareOptions">
+               {/* <div className="shareOptions">
                   <label htmlFor="file" className="shareOption">
                      <PermMedia htmlColor="tomato" className="shareIcon" />
                      <span className="shareOptionText">Снимка или Видео</span>
@@ -94,7 +94,7 @@ export default function Share() {
                         onChange={(e) => setFile(e.target.files[0])}
                      />
                   </label>
-               </div>
+               </div> */}
                <button className="shareButton" type="submit">
                   Сподели
                </button>

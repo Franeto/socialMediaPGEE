@@ -72,7 +72,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
       return (
          <div>
             <img
-               src={PF + "assets/pgeeLogo.png"}
+               src={"https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256539/pgeeLogo_ni2rxo.png"}
                alt=""
                className="rightbarAd"
             />
@@ -89,7 +89,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                               src={
                                  u?.profilePicture
                                     ? PF + u.profilePicture
-                                    : PF + "person/noAvatar.png"
+                                    : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                               }
                               alt=""
                               className="rightbarProfileImg"
@@ -166,7 +166,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                                  src={
                                     friend.profilePicture
                                        ? PF + friend.profilePicture
-                                       : PF + "person/noAvatar.png"
+                                       : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                                  }
                                  alt=""
                                  className="rightbarFollowingImg"

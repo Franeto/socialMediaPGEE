@@ -6,7 +6,7 @@ export default function Online({ user }) {
   return (
     <li className="rightbarFriend">
       <div className="rightbarProfileImgContainer">
-        <img src={PF+user.profilePicture} alt="" className="rightbarProfileImg" />
+        <img src={"https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"} alt="" className="rightbarProfileImg" />
         <span className="rightbarOnline"></span>
       </div>
       <span className="rightbarUsername">{user.username}</span>

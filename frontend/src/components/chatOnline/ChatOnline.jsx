@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./chatOnline.css";
+import { AccountCircle } from "@mui/icons-material";
 
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -10,7 +11,8 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
    useEffect(() => {
       const getFriends = async () => {
          const res = await axios.get(
-            "https://pgee-social-media.herokuapp.com/api/users/friends/" + currentId
+            "https://pgee-social-media.herokuapp.com/api/users/friends/" +
+               currentId
          );
          setFriends(res.data);
       };
@@ -29,24 +31,22 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
          );
          setCurrentChat(res.data);
       } catch (error) {
-         console.log(error); 
+         console.log(error);
       }
    };
 
    return (
       <div className="chatOnline">
          {onlineFriends.map((o, key) => (
-            <div key={key} className="chatOnlineFriend" onClick={() => handleClick(o)}>
+            <div
+               key={key}
+               className="chatOnlineFriend"
+               onClick={() => handleClick(o)}
+            >
                <div className="chatOnlineImgContainer">
-                  <img
-                     className="chatOnlineImg"
-                     src={
-                        o?.profilePicture
-                           ? PF + o.profilePicture
-                           : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                     }
-                     alt=""
-                  />
+                  <span className="chatOnlineImg">
+                     <AccountCircle />
+                  </span>
                   <div className="chatOnlineBadge"></div>
                </div>
                <span className="chatOnlineName">{o?.username}</span>

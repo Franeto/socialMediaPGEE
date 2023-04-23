@@ -72,7 +72,7 @@ export default function Post({ post }) {
                <div className="postBottomLeft">
                   {isLiked ? (
                      <>
-                     <span className="postLikeIconLiked"><ThumbUp/></span>
+                     <span className="postLikeIconLiked" onClick={likeHandler}><ThumbUp/></span>
                         {/* <img
                            className="postLikeIconLiked"
                            src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}
@@ -82,7 +82,7 @@ export default function Post({ post }) {
                      </>
                   ) : (
                      <>
-                     <span className="postLikeIcon"><ThumbUp/></span>
+                     <span className="postLikeIcon" onClick={likeHandler}><ThumbUp/></span>
                         {/* <img
                            className="postLikeIcon"
                            src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}

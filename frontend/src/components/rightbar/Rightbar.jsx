@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Add, Remove } from "@mui/icons-material";
+import { AccountCircle, Add, Remove } from "@mui/icons-material";
 import { Follow, Unfollow } from "../../context/AuthActions";
 
 export default function Rightbar({ user, onlineUsers, currentId }) {
@@ -20,12 +20,14 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
          try {
             if (user) {
                const friendList = await axios.get(
-                  "https://pgee-social-media.herokuapp.com/api/users/friends/" + user?._id
+                  "https://pgee-social-media.herokuapp.com/api/users/friends/" +
+                     user?._id
                );
                setFriends(friendList.data);
             } else {
                const friendList = await axios.get(
-                  "https://pgee-social-media.herokuapp.com/api/users/friends/" + currentId
+                  "https://pgee-social-media.herokuapp.com/api/users/friends/" +
+                     currentId
                );
                setFriends(friendList.data);
             }
@@ -49,13 +51,17 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
       try {
          if (followed) {
             await axios.put(
-               "https://pgee-social-media.herokuapp.com/api/users/" + user._id + "/unfollow",
+               "https://pgee-social-media.herokuapp.com/api/users/" +
+                  user._id +
+                  "/unfollow",
                { userId: currentUser._id }
             );
             dispatch(Unfollow(user._id));
          } else {
             await axios.put(
-               "https://pgee-social-media.herokuapp.com/api/users/" + user._id + "/follow",
+               "https://pgee-social-media.herokuapp.com/api/users/" +
+                  user._id +
+                  "/follow",
                { userId: currentUser._id }
             );
             dispatch(Follow(user._id));
@@ -72,7 +78,9 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
       return (
          <div>
             <img
-               src={"https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256539/pgeeLogo_ni2rxo.png"}
+               src={
+                  "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256539/pgeeLogo_ni2rxo.png"
+               }
                alt=""
                className="rightbarAd"
             />
@@ -85,15 +93,10 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                   >
                      <li className="rightbarFriend">
                         <div className="rightbarProfileImgContainer">
-                           <img
-                              src={
-                                 u?.profilePicture
-                                    ? PF + u.profilePicture
-                                    : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                              }
-                              alt=""
-                              className="rightbarProfileImg"
-                           />
+                           <span className="rightbarProfileImg">
+                              <AccountCircle />
+                           </span>
+
                            <span className="rightbarOnline"></span>
                         </div>
                         <span className="rightbarUsername">{u.username}</span>
@@ -162,15 +165,10 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                            style={{ textDecoration: "none" }}
                         >
                            <div className="rightbarFollowing">
-                              <img
-                                 src={
-                                    friend.profilePicture
-                                       ? PF + friend.profilePicture
-                                       : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                                 }
-                                 alt=""
-                                 className="rightbarFollowingImg"
-                              />
+                              <span className="rightbarFollowingImg">
+                                 <AccountCircle />
+                              </span>
+
                               <span className="rightbarFollowingName">
                                  {friend.username}
                               </span>

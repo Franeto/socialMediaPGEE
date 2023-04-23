@@ -5,6 +5,7 @@ import {
    Room,
    EmojiEmotions,
    Cancel,
+   AccountCircle,
 } from "@mui/icons-material";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -32,14 +33,20 @@ export default function Share() {
          newPost.img = fileName;
          console.log(newPost);
          try {
-            await axios.post("https://pgee-social-media.herokuapp.com/api/upload", data);
+            await axios.post(
+               "https://pgee-social-media.herokuapp.com/api/upload",
+               data
+            );
          } catch (err) {
             console.log(err);
          }
       }
 
       try {
-         await axios.post("https://pgee-social-media.herokuapp.com/api/posts", newPost);
+         await axios.post(
+            "https://pgee-social-media.herokuapp.com/api/posts",
+            newPost
+         );
          window.location.reload();
       } catch (err) {
          console.log(err);
@@ -50,15 +57,10 @@ export default function Share() {
       <form onSubmit={submitHandler} className="share">
          <div className="shareWrapper">
             <div className="shareTop">
-               <img
-                  className="shareProfileImg"
-                  src={
-                     user.profilePicture
-                        ? PF + user.profilePicture
-                        : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                  }
-                  alt=""
-               />
+               <span className="shareProfileImg">
+                  <AccountCircle />
+               </span>
+
                <input
                   ref={desc}
                   placeholder={"Какво ти е на ума, " + user.username + "?"}

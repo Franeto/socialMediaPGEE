@@ -1,5 +1,5 @@
 import "./topbar.css";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import { Search, Person, Chat, Notifications, AccountCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -14,7 +14,9 @@ export default function Topbar() {
 
    useEffect(() => {
       const getAllUsers = async () => {
-         const res = await axios.get("https://pgee-social-media.herokuapp.com/api/users/users");
+         const res = await axios.get(
+            "https://pgee-social-media.herokuapp.com/api/users/users"
+         );
          setAllUsers(res.data);
       };
       getAllUsers();
@@ -93,21 +95,20 @@ export default function Topbar() {
                   </Link>
                </div>
                <div className="topbarIconItem">
-                  <Link to={`/profile/${user.username}`}style={{ textDecoration: "none" }} >
-                     <Person style={{ textDecoration: "none", color: "white" }}/>
+                  <Link
+                     to={`/profile/${user.username}`}
+                     style={{ textDecoration: "none" }}
+                  >
+                     <Person
+                        style={{ textDecoration: "none", color: "white" }}
+                     />
                   </Link>
                </div>
             </div>
             <Link to={`/profile/${user.username}`}>
-               <img
-                  src={
-                     user.profilePicture
-                        ? PF + user.profilePicture
-                        : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                  }
-                  alt=""
-                  className="topbarImg"
-               />
+               <span className="topbarImg">
+                  <AccountCircle />
+               </span>
             </Link>
             <span className="topbarLink" onClick={handleClick}>
                Отпиши се

@@ -6,6 +6,7 @@ import Feed from "../../components/feed/Feed";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { AccountCircle } from "@mui/icons-material";
 
 export default function Profile() {
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -29,16 +30,14 @@ export default function Profile() {
             <div className="profileRight">
                <div className="profileRightTop">
                   <div className="profileCover">
-                     <img
+                     {/* <img
                         className="profileCoverImg"
                         src="https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256577/noCover_pm9xwc.png"
                         alt=""
-                     />
-                     <img
-                        className="profileUserImg"
-                        src="https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                        alt=""
-                     />
+                     /> */}
+                     <span className="profileUserImg">
+                        <AccountCircle />
+                     </span>
                   </div>
                   <div className="profileInfo">
                      <h4 className="profileInfoName">{user.username}</h4>

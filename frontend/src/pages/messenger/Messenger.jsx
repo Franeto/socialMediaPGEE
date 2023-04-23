@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 export default function Messenger() {
    const [conversations, setConversations] = useState([]);
    const [currentChat, setCurrentChat] = useState(null);
-   const [messages, setMessages] = useState("");
+   const [messages, setMessages] = useState([]);
    const [newMessage, setNewMessage] = useState("");
    const [arrivalMessage, setArrivalMessage] = useState(null);
    const [showWarning, setShowWarning] = useState(false);

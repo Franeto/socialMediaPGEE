@@ -14,7 +14,7 @@ export default function Message({ message, own }) {
       <div className={own ? "message own" : "message"}>
          <div className="messageTop">
             <span className="messageImg">
-               <AccountCircle />
+               <AccountCircle sx={{ fontSize: 32 }}/>
             </span>
             <p className="messageText">{message.text}</p>
          </div>

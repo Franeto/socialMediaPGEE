@@ -63,15 +63,7 @@ export default function Topbar() {
                            style={{ textDecoration: "none" }}
                         >
                            <div className="searchItemResult">
-                              <img
-                                 className="postProfileImg"
-                                 src={
-                                    user.profilePicture
-                                       ? PF + user.profilePicture
-                                       : PF + "person/noAvatar.png"
-                                 }
-                                 alt=""
-                              />
+                              <span className="postProfileImg"><AccountCircle sx={{ fontSize: 32 }}/></span>
                               <span className="searchItemResultName">
                                  {user.username}
                               </span>
@@ -107,7 +99,7 @@ export default function Topbar() {
             </div>
             <Link to={`/profile/${user.username}`}>
                <span className="topbarImg">
-                  <AccountCircle />
+                  <AccountCircle sx={{ fontSize: 32 }}/>
                </span>
             </Link>
             <span className="topbarLink" onClick={handleClick}>

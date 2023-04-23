@@ -24,7 +24,7 @@ export default function Conversation({ conversation, currentUser }) {
    }, [currentUser,conversation]);
    return (
       <div className="conversation">
-         <span className="conversationImg"><AccountCircle/></span>
+         <span className="conversationImg"><AccountCircle sx={{ fontSize: 40 }}/></span>
          <span className="conversationName">{user?.username}</span>
       </div>
    );

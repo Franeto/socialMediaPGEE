@@ -1,9 +1,6 @@
 import "./share.css";
 import {
    PermMedia,
-   Label,
-   Room,
-   EmojiEmotions,
    Cancel,
    AccountCircle,
 } from "@mui/icons-material";
@@ -58,7 +55,7 @@ export default function Share() {
          <div className="shareWrapper">
             <div className="shareTop">
                <span className="shareProfileImg">
-                  <AccountCircle />
+                  <AccountCircle sx={{ fontSize: 50 }}/>
                </span>
 
                <input

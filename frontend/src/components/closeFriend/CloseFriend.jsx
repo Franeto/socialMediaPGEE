@@ -5,7 +5,7 @@ export default function CloseFriend({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
   return (
     <li className="sidebarFriend">
-      <span className="sidebarFriendImg"><AccountCircle/></span>
+      <span className="sidebarFriendImg"><AccountCircle sx={{ fontSize: 32 }}/></span>
       <span className="sidebarFriendName">{user.username}</span>
     </li>
   );

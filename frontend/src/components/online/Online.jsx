@@ -8,7 +8,7 @@ export default function Online({ user }) {
       <li className="rightbarFriend">
          <div className="rightbarProfileImgContainer">
             <span className="rightbarProfileImg">
-               <AccountCircle />
+               <AccountCircle sx={{ fontSize: 40 }}/>
             </span>
             <span className="rightbarOnline"></span>
          </div>

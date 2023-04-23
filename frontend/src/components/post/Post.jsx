@@ -11,7 +11,6 @@ import TimeAgo from "react-timeago";
 import bgStrings from "react-timeago/lib/language-strings/bg";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 
-
 const formatter = buildFormatter(bgStrings);
 
 export default function Post({ post }) {
@@ -36,9 +35,14 @@ export default function Post({ post }) {
 
    const likeHandler = () => {
       try {
-         axios.put(`https://pgee-social-media.herokuapp.com/api/posts/` + post._id + "/like", {
-            userId: currentUser._id,
-         });
+         axios.put(
+            `https://pgee-social-media.herokuapp.com/api/posts/` +
+               post._id +
+               "/like",
+            {
+               userId: currentUser._id,
+            }
+         );
       } catch (err) {
          console.log(err);
       }
@@ -53,7 +57,9 @@ export default function Post({ post }) {
             <div className="postTop">
                <div className="postTopLeft">
                   <Link to={`/profile/${user.username}`}>
-                     <span className="postProfileImg"><AccountCircle/></span>
+                     <span className="postProfileImg">
+                        <AccountCircle />
+                     </span>
                   </Link>
                   <span className="postUsername">{user.username}</span>
                   <span className="postDate">
@@ -72,23 +78,18 @@ export default function Post({ post }) {
                <div className="postBottomLeft">
                   {isLiked ? (
                      <>
-                     <span className="postLikeIconLiked" onClick={likeHandler}><ThumbUp/></span>
-                        {/* <img
+                        <span
                            className="postLikeIconLiked"
-                           src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}
                            onClick={likeHandler}
-                           alt=""
-                        /> */}
+                        >
+                           <ThumbUp sx={{ fontSize: 30 }}/>
+                        </span>
                      </>
                   ) : (
                      <>
-                     <span className="postLikeIcon" onClick={likeHandler}><ThumbUp/></span>
-                        {/* <img
-                           className="postLikeIcon"
-                           src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}
-                           onClick={likeHandler}
-                           alt=""
-                        /> */}
+                        <span className="postLikeIcon" onClick={likeHandler}>
+                           <ThumbUp sx={{ fontSize: 24 }}/>
+                        </span>
                      </>
                   )}
                   {like === 1 ? (

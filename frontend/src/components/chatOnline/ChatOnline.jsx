@@ -45,7 +45,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
             >
                <div className="chatOnlineImgContainer">
                   <span className="chatOnlineImg">
-                     <AccountCircle />
+                     <AccountCircle sx={{ fontSize: 32 }}/>
                   </span>
                   <div className="chatOnlineBadge"></div>
                </div>

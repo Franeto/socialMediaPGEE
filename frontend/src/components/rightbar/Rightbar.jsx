@@ -94,7 +94,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                      <li className="rightbarFriend">
                         <div className="rightbarProfileImgContainer">
                            <span className="rightbarProfileImg">
-                              <AccountCircle />
+                              <AccountCircle sx={{ fontSize: 40 }}/>
                            </span>
 
                            <span className="rightbarOnline"></span>
@@ -166,7 +166,7 @@ export default function Rightbar({ user, onlineUsers, currentId }) {
                         >
                            <div className="rightbarFollowing">
                               <span className="rightbarFollowingImg">
-                                 <AccountCircle />
+                                 <AccountCircle sx={{ fontSize: 100 }}/>
                               </span>
 
                               <span className="rightbarFollowingName">

@@ -36,7 +36,7 @@ export default function Profile() {
                         alt=""
                      /> */}
                      <span className="profileUserImg">
-                        <AccountCircle />
+                        <AccountCircle sx={{ fontSize: 150 }}/>
                      </span>
                   </div>
                   <div className="profileInfo">

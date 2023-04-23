@@ -2,6 +2,7 @@ import "./post.css";
 import { MoreVert } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ThumbUp, AccountCircle } from "@mui/icons-material";
 import { format } from "timeago.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -9,6 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 import TimeAgo from "react-timeago";
 import bgStrings from "react-timeago/lib/language-strings/bg";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
+
 
 const formatter = buildFormatter(bgStrings);
 
@@ -51,15 +53,7 @@ export default function Post({ post }) {
             <div className="postTop">
                <div className="postTopLeft">
                   <Link to={`/profile/${user.username}`}>
-                     <img
-                        className="postProfileImg"
-                        src={
-                           user.profilePicture
-                              ? PF + user.profilePicture
-                              : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                        }
-                        alt=""
-                     />
+                     <span className="postProfileImg"><AccountCircle/></span>
                   </Link>
                   <span className="postUsername">{user.username}</span>
                   <span className="postDate">
@@ -78,21 +72,23 @@ export default function Post({ post }) {
                <div className="postBottomLeft">
                   {isLiked ? (
                      <>
-                        <img
+                     <span className="postLikeIconLiked"><ThumbUp/></span>
+                        {/* <img
                            className="postLikeIconLiked"
                            src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}
                            onClick={likeHandler}
                            alt=""
-                        />
+                        /> */}
                      </>
                   ) : (
                      <>
-                        <img
+                     <span className="postLikeIcon"><ThumbUp/></span>
+                        {/* <img
                            className="postLikeIcon"
                            src={`https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256508/like_lcjlef.png`}
                            onClick={likeHandler}
                            alt=""
-                        />
+                        /> */}
                      </>
                   )}
                   {like === 1 ? (

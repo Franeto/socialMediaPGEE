@@ -66,9 +66,9 @@ export default function Post({ post }) {
                      <TimeAgo date={post.createdAt} formatter={formatter} />
                   </span>
                </div>
-               <div className="postTopRight">
+               {/* <div className="postTopRight">
                   <MoreVert />
-               </div>
+               </div> */}
             </div>
             <div className="postCenter">
                <span className="postText">{post?.description}</span>

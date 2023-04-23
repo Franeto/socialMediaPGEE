@@ -31,20 +31,12 @@ export default function Profile() {
                   <div className="profileCover">
                      <img
                         className="profileCoverImg"
-                        src={
-                           user.coverPicture
-                              ? PF + user.coverPicture
-                              : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256577/noCover_pm9xwc.png"
-                        }
+                        src="https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256577/noCover_pm9xwc.png"
                         alt=""
                      />
                      <img
                         className="profileUserImg"
-                        src={
-                           user.profilePicture
-                              ? PF + user.profilePicture
-                              : "https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
-                        }
+                        src="https://res.cloudinary.com/dmvkam3rh/image/upload/v1682256559/noAvatar_pua4bg.png"
                         alt=""
                      />
                   </div>

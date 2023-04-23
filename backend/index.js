@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
       "GET, HEAD, POST, PUT, DELETE, OPTIONS"
    );
    res.header("Cross-Origin-Resource-Policy", "cross-origin");
-   res.header("Content-Security-Policy", "default-src 'self'; img-src 'self' https://res.cloudinary.com;")
+   res.setHeader("Content-Security-Policy-Report-Only", "default-src 'self'; img-src 'self' https://res.cloudinary.com; style-src 'self'; font-src https://fonts.googleapis.com")
    next();
 });
 

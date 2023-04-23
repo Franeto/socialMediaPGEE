@@ -1,0 +1,11 @@
+.feed{
+    flex: 5.5;
+}
+
+.feedWrapper{
+    padding: 20px;
+}
+.feedNoPosts{
+    color: rgb(201, 201, 201);
+    padding-top: 20px;;
+}

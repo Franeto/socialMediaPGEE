@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://localhost:8800',
+      target: 'https://pgee-social-media.herokuapp.com',
       changeOrigin: true,
     })
   );

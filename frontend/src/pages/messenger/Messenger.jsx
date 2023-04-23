@@ -39,7 +39,7 @@ export default function Messenger() {
          if (userID) {
             try {
                const res = await axios.get(
-                  `http://localhost:8800/api/conversations/find/${userID}/${user._id}`
+                  `https://pgee-social-media.herokuapp.com/api/conversations/find/${userID}/${user._id}`
                );
                setCurrentChat(res.data);
             } catch (error) {
@@ -69,7 +69,7 @@ export default function Messenger() {
       const getConversations = async () => {
          try {
             const res = await axios.get(
-               "http://localhost:8800/api/conversations/" + user._id
+               "https://pgee-social-media.herokuapp.com/api/conversations/" + user._id
             );
             setConversations(res.data);
          } catch (err) {
@@ -83,7 +83,7 @@ export default function Messenger() {
       const getMessages = async () => {
          try {
             const res = await axios(
-               "http://localhost:8800/api/messages/" + currentChat?._id
+               "https://pgee-social-media.herokuapp.com/api/messages/" + currentChat?._id
             );
             setMessages(res.data);
          } catch (err) {
@@ -123,7 +123,7 @@ export default function Messenger() {
 
       try {
          const res = await axios.post(
-            "http://localhost:8800/api/messages",
+            "https://pgee-social-media.herokuapp.com/api/messages",
             message
          );
          setMessages([...messages, res.data]);

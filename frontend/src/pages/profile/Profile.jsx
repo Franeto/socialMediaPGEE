@@ -11,7 +11,7 @@ export default function Profile() {
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
    const [user, setUser] = useState({});
    const username = useParams().username;
-   const axiosLink = `http://localhost:8800/api/users?username=${username}`;
+   const axiosLink = `https://pgee-social-media.herokuapp.com/api/users?username=${username}`;
 
    useEffect(() => {
       const fetchUser = async () => {

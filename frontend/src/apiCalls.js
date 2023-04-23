@@ -3,7 +3,7 @@ import axios from "axios";
 export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: "LOGIN_START" });
   try {
-    const axiosLink = "http://localhost:8800/api/auth/login";
+    const axiosLink = "https://pgee-social-media.herokuapp.com/api/auth/login";
     const res = await axios.post(axiosLink, userCredential);
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (err) {

@@ -9,8 +9,8 @@ export default function Feed({ username }) {
    const [posts, setPosts] = useState([]);
    const { user } = useContext(AuthContext);
 
-   const timelineLink = "http://localhost:8800/api/posts/timeline/" + user._id;
-   const profileLink = "http://localhost:8800/api/posts/profile/" + username;
+   const timelineLink = "https://pgee-social-media.herokuapp.com/api/posts/timeline/" + user._id;
+   const profileLink = "https://pgee-social-media.herokuapp.com/api/posts/profile/" + username;
 
    useEffect(() => {
       const fetchPosts = async () => {

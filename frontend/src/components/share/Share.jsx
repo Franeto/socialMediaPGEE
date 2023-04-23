@@ -32,14 +32,14 @@ export default function Share() {
          newPost.img = fileName;
          console.log(newPost);
          try {
-            await axios.post("http://localhost:8800/api/upload", data);
+            await axios.post("https://pgee-social-media.herokuapp.com/api/upload", data);
          } catch (err) {
             console.log(err);
          }
       }
 
       try {
-         await axios.post("http://localhost:8800/api/posts", newPost);
+         await axios.post("https://pgee-social-media.herokuapp.com/api/posts", newPost);
          window.location.reload();
       } catch (err) {
          console.log(err);

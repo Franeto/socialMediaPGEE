@@ -12,7 +12,7 @@ export default function Conversation({ conversation, currentUser }) {
       const getUser = async () => {
          try {
             const res = await axios(
-               "http://localhost:8800/api/users?userId=" + friendId
+               "https://pgee-social-media.herokuapp.com/api/users?userId=" + friendId
             );
             setUser(res.data)
          } catch (err) {

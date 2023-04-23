@@ -14,7 +14,7 @@ export default function Topbar() {
 
    useEffect(() => {
       const getAllUsers = async () => {
-         const res = await axios.get("http://localhost:8800/api/users/users");
+         const res = await axios.get("https://pgee-social-media.herokuapp.com/api/users/users");
          setAllUsers(res.data);
       };
       getAllUsers();

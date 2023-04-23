@@ -17,7 +17,7 @@ export default function Post({ post }) {
    const [isLiked, setIsLiked] = useState(false);
    const [user, setUser] = useState({});
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-   const axiosLink = `http://localhost:8800/api/users?userId=${post.userId}`;
+   const axiosLink = `https://pgee-social-media.herokuapp.com/api/users?userId=${post.userId}`;
    const { user: currentUser } = useContext(AuthContext);
 
    useEffect(() => {
@@ -34,7 +34,7 @@ export default function Post({ post }) {
 
    const likeHandler = () => {
       try {
-         axios.put(`http://localhost:8800/api/posts/` + post._id + "/like", {
+         axios.put(`https://pgee-social-media.herokuapp.com/api/posts/` + post._id + "/like", {
             userId: currentUser._id,
          });
       } catch (err) {

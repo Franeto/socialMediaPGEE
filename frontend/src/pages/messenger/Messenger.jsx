@@ -48,7 +48,7 @@ export default function Messenger() {
          }
       };
       getCurrentConversation();
-   }, [userID, user._id]);
+   }, [userID,user._id]);
 
    useEffect(() => {
       arrivalMessage &&
@@ -69,8 +69,7 @@ export default function Messenger() {
       const getConversations = async () => {
          try {
             const res = await axios.get(
-               "https://pgee-social-media.herokuapp.com/api/conversations/" +
-                  user._id
+               "https://pgee-social-media.herokuapp.com/api/conversations/" + user._id
             );
             setConversations(res.data);
          } catch (err) {
@@ -84,8 +83,7 @@ export default function Messenger() {
       const getMessages = async () => {
          try {
             const res = await axios(
-               "https://pgee-social-media.herokuapp.com/api/messages/" +
-                  currentChat?._id
+               "https://pgee-social-media.herokuapp.com/api/messages/" + currentChat?._id
             );
             setMessages(res.data);
          } catch (err) {
@@ -157,20 +155,14 @@ export default function Messenger() {
                   {currentChat ? (
                      <>
                         <div className="chatBoxTop">
-                           {messages > 0 ? (
-                              <>
-                                 {messages.map((m) => (
-                                    <div key={m._id} ref={scrollRef}>
-                                       <Message
-                                          message={m}
-                                          own={m.sender === user._id}
-                                       />
-                                    </div>
-                                 ))}
-                              </>
-                           ) : (
-                              <><span className="noConversationText"> Нямаш изпратени съобщения.</span></>
-                           )}
+                           {messages.map((m) => (
+                              <div key={m._id} ref={scrollRef}>
+                                 <Message
+                                    message={m}
+                                    own={m.sender === user._id}
+                                 />
+                              </div>
+                           ))}
                         </div>
                         <div className="chatBoxBottom">
                            <textarea

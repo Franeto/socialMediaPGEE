@@ -7,6 +7,9 @@
 .conversation:hover{
   background-color: rgb(243, 243, 243);
 }
+.conversation:focus{
+  background-color: rgb(243, 243, 243);
+}
 
 .conversationImg{
   width: 40px;

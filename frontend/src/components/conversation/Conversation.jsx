@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./conversation.css";
 import { AccountCircle } from "@mui/icons-material";
 
-export default function Conversation({ conversation, currentUser }) {
+export default function Conversation({ conversation, currentUser, tabIndex }) {
    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
    const [user, setUser] = useState(null);
 
@@ -23,7 +23,7 @@ export default function Conversation({ conversation, currentUser }) {
       getUser();
    }, [currentUser,conversation]);
    return (
-      <div className="conversation">
+      <div tabIndex={tabIndex} className="conversation">
          <span className="conversationImg"><AccountCircle sx={{ fontSize: 40 }}/></span>
          <span className="conversationName">{user?.username}</span>
       </div>

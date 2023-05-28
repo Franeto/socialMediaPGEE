@@ -143,9 +143,9 @@ export default function Messenger() {
                      placeholder="Search for friends"
                      className="chatMenuInput"
                   /> */}
-                  {conversations.map((c) => (
+                  {conversations.map((c,id) => (
                      <div key={c._id} onClick={() => setCurrentChat(c)}>
-                        <Conversation conversation={c} currentUser={user} />
+                        <Conversation conversation={c} currentUser={user} tabIndex={id} />
                      </div>
                   ))}
                </div>

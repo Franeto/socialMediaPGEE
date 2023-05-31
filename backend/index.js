@@ -89,6 +89,9 @@ const server = app.listen(PORT, () => {
    console.log(`Backend server is running on port ${PORT}.`);
 });
 
+
+
+// SOCKET IO
 const io = require("socket.io")(server, {
    cors: {
       origin: "http://localhost:3000",
